@@ -12,26 +12,26 @@ import re
 from pathlib import Path
 from PIL import Image
 
-# --- CONFIGURACIÓN ---
+# --- CONFIGURATION ---
 COMFYUI_SERVER_ADDRESS = "127.0.0.1:8188" 
 CLIENT_ID = str(uuid.uuid4())
 WORKFLOW_FILE = "workflow_api_img2img.json" 
 OUTPUT_BASE_DIR = Path("comfy_outputs").resolve()
 
-# --- UTILS & SEGURIDAD ---
+# --- UTILS & SECURITY ---
 def sanitize_name(name):
     name = str(name).strip().replace(" ", "_")
     name = re.sub(r'(?u)[^-\w]', '', name)
     return name if name else "untitled"
 
 def get_ascii_bar(current, total, width=20):
-    """Genera una barra de progreso visual para la terminal."""
+    """Generates a visual progress bar for the terminal."""
     percent = float(current) / total
     filled = int(width * percent)
     bar = "█" * filled + "░" * (width - filled)
     return f"[{bar}] {int(percent * 100)}%"
 
-# --- COMUNICACIÓN API ---
+# --- API COMMUNICATION ---
 def upload_image(filepath):
     with open(filepath, 'rb') as f:
         files = {'image': f}
@@ -90,7 +90,7 @@ def generate_single_image(input_image_path):
     ws.close()
     return output_image_data
 
-# --- PROCESADOR CON BARRA EN TERMINAL ---
+# --- TERMINAL PROCESSOR ---
 def batch_process_generator(list_of_images, folder_name_input, progress=gr.Progress()):
     if not list_of_images:
         yield [], "❌ TERMINAL ERROR: No source files."
@@ -106,9 +106,9 @@ def batch_process_generator(list_of_images, folder_name_input, progress=gr.Progr
     for i, img_path in enumerate(list_of_images):
         original_filename = os.path.basename(img_path.name)
         
-        # Barra de progreso ASCII para la terminal
+        # ASCII progress bar for the terminal box
         ascii_progress = get_ascii_bar(i, total)
-        log_msg = f"FORGING SESSION: {safe_folder_name}\n{ascii_progress}\nCURRENT: {original_filename}"
+        log_msg = f"COLORING SESSION: {safe_folder_name}\n{ascii_progress}\nCURRENT: {original_filename}"
         
         yield current_gallery, log_msg
         
@@ -120,20 +120,20 @@ def batch_process_generator(list_of_images, folder_name_input, progress=gr.Progr
                 pil_img.save(target_dir / safe_name)
                 current_gallery.append((pil_img, safe_name))
                 
-                # Actualización intermedia
-                yield current_gallery, f"FORGING SESSION: {safe_folder_name}\n{get_ascii_bar(i+1, total)}\n✅ SUCCESS: {safe_name}"
+                # Intermediate update
+                yield current_gallery, f"COLORING SESSION: {safe_folder_name}\n{get_ascii_bar(i+1, total)}\n✅ SUCCESS: {safe_name}"
         except Exception as e:
-            yield current_gallery, f"FORGING SESSION: {safe_folder_name}\n{ascii_progress}\n❌ ERROR: {str(e)}"
+            yield current_gallery, f"COLORING SESSION: {safe_folder_name}\n{ascii_progress}\n❌ ERROR: {str(e)}"
 
-    final_log = f"FORGING SESSION: {safe_folder_name}\n{get_ascii_bar(total, total)}\n✨ SESSION COMPLETE. {total} IMAGES SAVED."
+    final_log = f"COLORING SESSION: {safe_folder_name}\n{get_ascii_bar(total, total)}\n✨ SESSION COMPLETE. {total} IMAGES SAVED."
     yield current_gallery, final_log
 
-# --- ESTILO CYBER-AMETHYST V3.0 (GRADIO 6.0) ---
+# --- CYBER-AMETHYST V3.0 STYLE (GRADIO 6.0) ---
 
 custom_css = """
 .gradio-container { background: radial-gradient(circle at top, #1e1b4b 0%, #020617 100%); }
 
-/* Labels en Negrita Extrema */
+/* Extreme Bold Labels */
 .block label span { 
     font-weight: 900 !important; 
     text-transform: uppercase;
@@ -141,7 +141,7 @@ custom_css = """
     color: #a5b4fc !important;
 }
 
-/* ANTI-FADE: La galería se queda brillante siempre */
+/* ANTI-FADE: Gallery stays bright always */
 .pending, .generating, .progress-parent, .processing { 
     opacity: 1 !important; 
     filter: none !important; 
@@ -150,7 +150,7 @@ custom_css = """
 h1 { font-weight: 900; letter-spacing: -1px; }
 h1, h2, h3, p, span { color: #a5b4fc !important; }
 
-/* Estilo Terminal Hacker */
+/* Hacker Terminal Style */
 #status_box { 
     background-color: #000000 !important; 
     color: #22d3ee !important; 
@@ -196,17 +196,17 @@ theme = gr.themes.Base(
     button_primary_text_color="#cffafe",
 )
 
-# --- CONSTRUCCIÓN ---
-with gr.Blocks(title="ComfyUI Forge") as app:
+# --- BUILD ---
+with gr.Blocks(title="Manga Coloring Tool") as app:
     with gr.Row():
-        gr.Markdown("# ⚡ COMFYUI FORGE")
+        gr.Markdown("# ⚡ MANGA COLORING TOOL")
     
     with gr.Row(equal_height=True):
-        # COLUMNA IZQUIERDA (CONTROLES Y TERMINAL)
+        # LEFT COLUMN (CONTROLS & TERMINAL)
         with gr.Column(scale=1, variant="panel"):
             gr.Markdown("### ⚙️ PARAMETERS")
-            folder_input = gr.Textbox(label="Session Folder", value="evolution_01")
-            input_files = gr.File(label="Source Files", file_count="multiple", file_types=["image"])
+            folder_input = gr.Textbox(label="Session Folder Name", value="manga_chapter_01")
+            input_files = gr.File(label="Upload Manga Pages", file_count="multiple", file_types=["image"])
             
             gr.Markdown("### 📟 ACTIVITY TERMINAL")
             status_output = gr.Textbox(
@@ -217,9 +217,9 @@ with gr.Blocks(title="ComfyUI Forge") as app:
                 interactive=False
             )
             
-            btn_generate = gr.Button("🚀 EXECUTE FORGE", variant="primary", elem_classes="generate-btn")
+            btn_generate = gr.Button("🚀 START COLORIZATION", variant="primary", elem_classes="generate-btn")
 
-        # COLUMNA DERECHA (RESULTADOS)
+        # RIGHT COLUMN (RESULTS)
         with gr.Column(scale=2):
             gr.Markdown("### 🖼️ LIVE OUTPUT GALLERY")
             output_gallery = gr.Gallery(

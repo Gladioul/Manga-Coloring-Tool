@@ -1,72 +1,58 @@
-# 🎨 FLUX.2 Klein Manga Colorizer (v1.0 - 2026)
+# 🎨 Manga Colorizer Tool (v1.0 - 2026)
 
 ![Status](https://img.shields.io/badge/Status-Beta-yellow) ![Engine](https://img.shields.io/badge/Engine-FLUX.2--Klein-purple) ![Optimization](https://img.shields.io/badge/Model-FP8-green) ![Platform](https://img.shields.io/badge/UI-Gradio-orange)
 
-El colorizador de manga definitivo basado en la arquitectura de última generación **FLUX.2 Klein 4B (FP8)**. Este software permite transformar dibujos en blanco y negro (lineart) en piezas coloreadas profesionalmente en segundos, optimizando el uso de la VRAM para funcionar en hardware doméstico.
+The ultimate manga colorizer based on the state-of-the-art **FLUX.2 Klein 4B (FP8)** architecture. This software allows you to transform black and white drawings (lineart) into professionally colored pieces in seconds, optimizing VRAM usage to run smoothly on consumer hardware.
 
 ---
 
-## ⚡ Instalación y Ejecución Directa
+## ⚡ Installation and Direct Execution
 
-Este proyecto está diseñado para ser portable y fácil de usar. Sigue estos pasos tras descomprimir el archivo `.zip`:
+This project is designed to be portable and easy to use. Follow these steps after unzipping the `.zip` file:
 
-1. **Requisitos de Sistema:**
-   - **GPU:** NVIDIA (Serie 3000 o superior recomendada) con **8GB de VRAM** mínimo.
-   - **RAM:** 16GB.
-   - **Espacio:** 15GB libres (para el modelo y dependencias).
-   - **Python:** Tener instalado [Python 3.10+](https://www.python.org/).
+1.  **System Requirements:**
+    * **GPU:** NVIDIA (3000 Series or higher recommended) with a minimum of **8GB VRAM**.
+    * **RAM:** 16GB.
+    * **Storage:** 15GB free space (for the model and dependencies).
 
-2. **Acceso al Modelo (Hugging Face):**
-   - El modelo es de acceso restringido. Debes aceptar los términos en [HF: FLUX.2 Klein](https://huggingface.co/black-forest-labs/FLUX.2-klein-4b-fp8).
-   - Loguéate en tu terminal una sola vez:
-     ```bash
-     pip install huggingface_hub
-     huggingface-cli login
-     ```
-
-3. **¡Lanzar con un Clic!:**
-   - Haz doble clic en el archivo `run_app.bat`. 
-   - El script configurará automáticamente el entorno virtual (`venv`), instalará los requisitos y abrirá la interfaz en tu navegador.
+2.  **One-Click Launch!:**
+    * Double-click the `run.bat` file.
+    * The script will automatically configure the virtual environment (`venv`), install the requirements, and open the interface in your web browser.
 
 ---
 
-## 🖥️ Guía de la Interfaz y Uso
+## 🖥️ Interface Guide and Usage
 
+### 📥 Data Input
+* **Main Manga Input:** Upload your B/W image. Works best with clean, well-defined lineart.
 
-
-### 📥 Entrada de Datos
-* **Main Manga Input:** Sube tu imagen en B/N. Funciona mejor con lineart definido y limpio.
-* **Color References:** Puedes subir hasta **3 imágenes de referencia**. El sistema extraerá la estética y los tonos de estas imágenes para aplicarlos de forma coherente a tu dibujo.
-
-### ⚙️ Ajustes de Generación
-* **Strength (Fuerza de Cambio):** * `0.5`: Mantiene el dibujo original casi intacto, añade colores suaves.
-    * `0.7`: **(Recomendado)** Equilibrio perfecto entre respetar tu línea y aplicar sombreado profesional.
-    * `0.9`: Da más libertad a la IA para reinterpretar luces y volúmenes.
-* **Guidance Scale:** Ajusta qué tan "vibrantes" o saturados serán los colores según el prompt interno.
-
-### 📤 Salida
-* El resultado aparecerá a la derecha. Puedes guardar la imagen haciendo clic derecho o usando el botón de descarga integrado.
+### 📤 Output
+* The result will appear on the right. You can save the image by right-clicking or using the integrated download button.
 
 ---
 
-## 🌟 Resultados y Capacidades
+## 🌟 Results and Capabilities
 
-Este software no es un simple "relleno de cubeta". Gracias a **FLUX.2 Klein**, obtendrás:
-* **Sombreado Cel-Shading:** Sombras nítidas y profesionales típicas del anime moderno.
-* **Fusión de Referencias:** Capacidad de mezclar colores de diferentes imágenes para crear una paleta única.
-* **Preservación de Detalles:** Los tramados y texturas originales del manga se respetan en gran medida.
+This software is not just a simple "bucket fill" tool. Thanks to **FLUX.2 Klein**, you will get:
+* **Cel-Shading:** Sharp, professional shading typical of modern anime.
+* **Detail Preservation:** The original manga screen tones and textures are largely respected and preserved.
+
+---
+
+## ❤️ Credits and Open Source Ecosystem
+
+This project is a reality thanks to the open technologies driving AI in 2026:
+
+* **[Black Forest Labs](https://blackforestlabs.ai/):** For developing the revolutionary **FLUX** architecture.
+* **[ComfyUI](https://github.com/comfyanonymous/ComfyUI):** Whose innovative memory management and node-based workflow inspired the optimization of this engine for 8GB GPUs.
+* **[Hugging Face](https://huggingface.co/):** For facilitating model distribution and the `diffusers` library.
+* **[Gradio](https://gradio.app/):** For enabling the creation of powerful and simple interfaces.
+* **[Pytorch & NVIDIA](https://pytorch.org/):** For technical support in hardware acceleration (CUDA/FP8).
 
 ---
 
-## ❤️ Créditos y Ecosistema Open Source
+## Future Updates
 
-Este proyecto es una realidad gracias a las tecnologías abiertas que impulsan la IA en 2026:
+* **Color References:** You will be able to upload up to **3 reference images**. The system will extract the aesthetic and color palette from these images to apply them coherently to your drawing.
 
-* **[Black Forest Labs](https://blackforestlabs.ai/):** Por desarrollar la revolucionaria arquitectura **FLUX**.
-* **[ComfyUI](https://github.com/comfyanonymous/ComfyUI):** Cuya innovadora gestión de memoria y flujo de trabajo por nodos inspiró la optimización de este motor para GPUs de 8GB.
-* **[Hugging Face](https://huggingface.co/):** Por facilitar la distribución de modelos y la librería `diffusers`.
-* **[Gradio](https://gradio.app/):** Por permitir crear interfaces potentes y sencillas.
-* **[Pytorch & NVIDIA](https://pytorch.org/):** Por el soporte técnico de aceleración por hardware (CUDA/FP8).
-
----
-*Desarrollado para la comunidad de artistas y entusiastas del manga - 2026.*
+*Developed for the community of artists and manga enthusiasts - 2026.*
