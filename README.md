@@ -19,6 +19,7 @@ This project is designed to be portable and easy to use. Follow these steps afte
 
 1.  **System Requirements:**
     * **GPU:** NVIDIA (3000 Series or higher recommended) with a minimum of **8GB VRAM**.
+    * **Drivers:** Latest NVIDIA Drivers installed. (No need to install CUDA Toolkit manually).
     * **RAM:** 16GB.
     * **Storage:** 15GB free space (for the model and dependencies).
 
@@ -29,6 +30,8 @@ This project is designed to be portable and easy to use. Follow these steps afte
 ---
 
 ## 🖥️ Interface Guide and Usage
+
+![Manga Colorizer Interface](interface.png)
 
 ### 📥 Data Input
 * **Main Manga Input:** Upload your B/W image. Works best with clean, well-defined lineart.
@@ -43,6 +46,18 @@ This project is designed to be portable and easy to use. Follow these steps afte
 This software is not just a simple "bucket fill" tool. Thanks to **FLUX.2 Klein**, you will get:
 * **Cel-Shading:** Sharp, professional shading typical of modern anime.
 * **Detail Preservation:** The original manga screen tones and textures are largely respected and preserved.
+
+---
+
+## 🖼️ Gallery: Before & After
+
+See the power of the engine in action.
+
+| Original Lineart | Colorized Output |
+| :---: | :---: |
+| ![Original 1](example1.png) | ![Colorized 1](example1_c.png) |
+| ![Original 2](example2.png) | ![Colorized 2](example2_c.png) |
+| ![Original 3](example3.png) | ![Colorized 3](example3_c.png) |
 
 ---
 
